@@ -6,11 +6,16 @@ const euro = 5.4
 const bitcoin = 141.742
 
 
-const convertValues = () => {
+
+const convertValues = async () => {
     const inputReais = document.getElementById('input-real').value
     const realValueText = document.getElementById('real-value-text')
     const currencyValueText = document.getElementById('currency-value-text')
 
+   const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL").then(response => response.json())
+
+
+    console.log(data)
 
     // realValueText.innerHTML = inputReais
 
@@ -49,7 +54,7 @@ const convertValues = () => {
 
 
 
-    changeCurrency = () => {
+changeCurrency = () => {
     const currencyName = document.getElementById('currency-name')
     const currencyImg = document.getElementById('currency-img')
 
@@ -57,19 +62,19 @@ const convertValues = () => {
         currencyName.innerHTML = 'Dólar americano'
         currencyImg.src = "./assets/estados-unidos (1) 1.png"
     }
-    
+
     if (select.value === '€ Euro') {
         currencyName.innerHTML = 'Euro'
         currencyImg.src = "./assets/Design sem nome 1.png"
     }
-    
+
     if (select.value === 'Bitcoin') {
         currencyName.innerHTML = 'Bitcoin'
         currencyImg.src = "./assets/bitcoin.png"
     }
     convertValues()
 }
-    
+
 
 
 button.addEventListener('click', convertValues)
